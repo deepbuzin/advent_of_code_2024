@@ -2,17 +2,17 @@ from collections import defaultdict
 
 
 with open("input_day1.txt", "r") as f:
-    input = f.readlines()
+    input_str = f.readlines()
 
-left_list = sorted([int(line.split("   ")[0]) for line in input])
-right_list = sorted([int(line.split("   ")[1]) for line in input])
+left_list = sorted([int(line.split("   ")[0]) for line in input_str])
+right_list = sorted([int(line.split("   ")[1]) for line in input_str])
 
-sum = 0
+distance = 0
 
 for left, right in zip(left_list, right_list):
-    sum += abs(left - right)
+    distance += abs(left - right)
 
-print(sum)
+print(distance)
 
 counts = defaultdict(int)
 
