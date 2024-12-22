@@ -59,7 +59,7 @@ for map_offset in range(0, len(disk_map), 2):
     count = disk_map[file_loc]
 
     old_pos = disk_map.cumsum()[file_loc - 1]
-    slice = full_map[old_pos : old_pos + count] 
+    slice = full_map[old_pos : old_pos + count]
     val = full_map[old_pos]
 
     for space_idx in range(1, len(disk_map) - 1 - map_offset, 2):
@@ -73,7 +73,5 @@ for map_offset in range(0, len(disk_map), 2):
             disk_map = np.insert(disk_map, space_idx, [0, count])
             break
 
-defrag_checksum =  sum(full_map * np.array(list(range(len(full_map)))))
+defrag_checksum = sum(full_map * np.array(list(range(len(full_map)))))
 print(defrag_checksum)
-
-
