@@ -54,24 +54,23 @@ for spec in input_str.split("\n\n"):
 
 total_cost = 0
 
-for machine in machines:
-    dist = np.ones((100, 100, 2)) * np.inf
+for m in machines:
+    a = (m.x * m.b_y - m.y * m.b_x) / (m.a_x * m.b_y - m.a_y * m.b_x)
+    b = (m.y * m.a_x - m.x * m.a_y) / (m.a_x * m.b_y - m.a_y * m.b_x)
+    if a == int(a) and b == int(b):
+        total_cost += 3 * a + b
 
-    for i in range(100):
-        for j in range(100):
-            dist[i, j] = np.array(
-                [
-                    float(machine.a_x * i + machine.b_x * j),
-                    machine.a_y * i + machine.b_y * j,
-                ]
-            )
-
-    matches = dist[:, :] == [machine.x, machine.y]
-    targets = np.all(matches, axis=-1)
-    moves = np.argwhere(targets)
-    if len(moves):
-        cost = moves[:, 0] * 3 + moves[:, 1]
-        total_cost += cost[0]
+print(int(total_cost))
 
 
-print(total_cost)
+big_total_cost = 0
+
+for m in machines:
+    x = m.x + 10000000000000
+    y = m.y + 10000000000000
+    a = (x * m.b_y - y * m.b_x) / (m.a_x * m.b_y - m.a_y * m.b_x)
+    b = (y * m.a_x - x * m.a_y) / (m.a_x * m.b_y - m.a_y * m.b_x)
+    if a == int(a) and b == int(b):
+        big_total_cost += 3 * a + b
+
+print(int(big_total_cost))
